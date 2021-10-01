@@ -1,13 +1,14 @@
 FROM node:14.18.0-alpine
 
+RUN mkdir -p /app
 WORKDIR /app
 
 COPY package.json /app/
 COPY package-lock.json /app/
 
-RUN npm install --production && npm cache clean
+RUN npm install --production && \
+    rm -rf /tmp/* /root/.npm /root/.node-gyp
 
 COPY . /app
 
-ENV NODE_ENV production
-ENTRYPOINT ["-S", "node", "-r", "esm", "./bin/server"]
+ENTRYPOINT ["bin/server"]
