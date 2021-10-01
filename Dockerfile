@@ -11,4 +11,4 @@ COPY . /app/
 
 ENV NODE_ENV production
 
-ENTRYPOINT ["/bin/server"]
+ENTRYPOINT ["node", "-r", "esm", "./bin/server"]
