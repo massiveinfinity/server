@@ -16,3 +16,5 @@ RUN \
   cd /app; \
   yarn install --production; \
   yarn cache clean
+
+ENTRYPOINT ["node", "-r", "esm", "./bin/server", "--port", "3000"]
