@@ -1,20 +1,15 @@
 FROM node:14-alpine
 
-CMD ["node", "-r", "esm", "./bin/server", "--port", "3000"]
-ENV NODE_ENV production
-EXPOSE 3000
 WORKDIR /app
 
-RUN \
-  set -ex; \
-  cd /; \
-  rmdir /app; \
-  wget -O master.zip https://github.com/massiveinfinity/server/archive/master.zip; \
-  unzip master.zip; \
-  rm master.zip; \
-  mv /server-master /app; \
-  cd /app; \
-  yarn install --production; \
-  yarn cache clean
+COPY package.json /app/
+COPY package-lock.json /app/
+
+RUN yarn install && yarn cache clean
+
+COPY . /app/
+
+ENV NODE_ENV development
+EXPOSE 3000
 
 ENTRYPOINT ["node", "-r", "esm", "./bin/server", "--port", "3000"]
