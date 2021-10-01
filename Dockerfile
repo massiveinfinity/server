@@ -11,4 +11,4 @@ COPY . /app/
 
 ENV NODE_ENV production
 
-ENTRYPOINT ["node", "-r", "esm", "./bin/server"]
+ENTRYPOINT ["./bin/server", "--port 3000"]
