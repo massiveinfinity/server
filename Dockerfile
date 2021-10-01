@@ -9,7 +9,7 @@ RUN \
   set -ex; \
   cd /; \
   rmdir /app; \
-  wget -O master.zip https://github.com/localtunnel/server/archive/master.zip; \
+  wget -O master.zip https://github.com/massiveinfinity/server/archive/master.zip; \
   unzip master.zip; \
   rm master.zip; \
   mv /server-master /app; \
